@@ -1,0 +1,353 @@
+/*
+Theme Name: Agency Starter Styles
+Theme URI:  https://example.com
+Author:      Your Agency
+Author URI:  https://example.com
+Description: Ready-to-use stylesheet for digital marketing agency websites (hero, services, case studies, CTA, forms, blog).
+Version:     1.0.0
+License:     GPL-2.0+
+License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+Text Domain: agency-starter
+*/
+
+/* -------------------------
+   CSS Variables (brand)
+   ------------------------- */
+:root{
+  --primary: #0b72ff;        /* main brand color */
+  --accent:  #ff6b6b;        /* accent */
+  --bg:      #ffffff;        /* page background */
+  --surface: #f8fafc;        /* card / surface background */
+  --text:    #0f1724;        /* main text */
+  --muted:   #6b7280;        /* secondary text */
+  --radius:  10px;
+  --container-max: 1200px;
+  --gutter: 1.25rem;
+  --heading-stack: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --body-stack: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --shadow-sm: 0 4px 10px rgba(15,23,36,0.06);
+  --shadow-md: 0 10px 30px rgba(15,23,36,0.08);
+}
+
+/* -------------------------
+   Base / Reset
+   ------------------------- */
+*,
+*::before,
+*::after{box-sizing:border-box}
+html,body{
+  height:100%;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body-stack);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  -webkit-text-size-adjust:100%;
+}
+
+/* Improve typographic scaling */
+h1,h2,h3,h4,h5,h6{color:var(--text); margin:0 0 .6rem; font-family:var(--heading-stack); line-height:1.15}
+p{margin:0 0 1rem}
+
+/* Remove default WP block spacing quirks */
+.entry-content p + p{margin-top:.6rem}
+
+/* -------------------------
+   Layout helpers
+   ------------------------- */
+.container{
+  width:100%;
+  max-width:var(--container-max);
+  margin:0 auto;
+  padding:0 calc(var(--gutter));
+}
+
+.row{
+  display:flex;
+  flex-wrap:wrap;
+  margin:calc(var(--gutter) * -1) 0 0 calc(var(--gutter) * -1);
+}
+.col{
+  padding:calc(var(--gutter)) 0 0 calc(var(--gutter));
+  flex:1 1 0%;
+}
+
+/* common widths */
+.col-1{flex:0 0 8.333%}
+.col-2{flex:0 0 16.666%}
+.col-3{flex:0 0 25%}
+.col-4{flex:0 0 33.333%}
+.col-6{flex:0 0 50%}
+.col-12{flex:0 0 100%}
+
+/* -------------------------
+   Header / Navigation
+   ------------------------- */
+.site-header{
+  background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));
+  position:sticky;
+  top:0;
+  z-index:50;
+  border-bottom:1px solid rgba(15,23,36,0.04);
+  backdrop-filter: blur(6px);
+}
+.site-header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:1rem calc(var(--gutter));
+}
+.site-brand{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  font-weight:700;
+  text-decoration:none;
+  color:var(--text);
+  font-size:1.1rem;
+}
+.site-nav{
+  display:flex;
+  gap:1rem;
+  align-items:center;
+}
+.site-nav a{
+  color:var(--muted);
+  text-decoration:none;
+  padding:.35rem .5rem;
+  border-radius:6px;
+  font-weight:600;
+  transition:color .18s, background .18s;
+}
+.site-nav a:hover,
+.site-nav a:focus{color:var(--text); background:rgba(11,114,255,0.06); outline:none}
+
+/* Primary action in the header */
+.btn{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  padding:.55rem .9rem;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow:var(--shadow-sm);
+  border:0;
+  cursor:pointer;
+}
+.btn:focus{outline:3px solid rgba(11,114,255,0.18); outline-offset:2px}
+
+/* Secondary button */
+.btn--ghost{
+  background:transparent;
+  border:1px solid rgba(15,23,36,0.06);
+  color:var(--text);
+}
+
+/* -------------------------
+   Hero / Lead
+   ------------------------- */
+.site-hero{
+  padding:4.5rem 0;
+  display:flex;
+  align-items:center;
+  background:linear-gradient(180deg, rgba(11,114,255,0.03), transparent);
+}
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr 420px;
+  gap:2rem;
+  align-items:center;
+}
+.hero-title{font-size:clamp(1.75rem, 3.8vw, 3rem); font-weight:800; margin-bottom:.5rem}
+.hero-lead{color:var(--muted); margin-bottom:1.2rem}
+.hero-cta{display:flex; gap:.75rem; align-items:center}
+.hero-illustration{background:var(--surface); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow-sm)}
+
+/* -------------------------
+   Services grid
+   ------------------------- */
+.services{
+  padding:3rem 0;
+}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:1.25rem;
+}
+.service-card{
+  background:var(--surface);
+  padding:1.25rem;
+  border-radius:12px;
+  box-shadow:var(--shadow-sm);
+  min-height:160px;
+}
+.service-card h3{margin-top:.5rem; font-size:1.05rem}
+.service-icon{
+  width:48px; height:48px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center;
+  background:linear-gradient(180deg, rgba(11,114,255,0.12), rgba(255,107,107,0.06));
+}
+
+/* -------------------------
+   Case studies / Cards
+   ------------------------- */
+.case-studies{padding:3rem 0}
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:1.25rem;
+}
+.card{
+  background:#fff;
+  border-radius:12px;
+  padding:1rem;
+  border:1px solid rgba(15,23,36,0.04);
+  box-shadow:var(--shadow-sm);
+}
+.card .meta{color:var(--muted); font-size:.9rem}
+.card .kpi{font-weight:800; font-size:1.4rem; margin-top:.5rem; color:var(--primary)}
+
+/* -------------------------
+   Testimonials
+   ------------------------- */
+.testimonials{
+  padding:3rem 0;
+  background:linear-gradient(180deg, rgba(11,114,255,0.02), transparent);
+}
+.testimonial{
+  background:var(--surface);
+  padding:1rem;
+  border-radius:10px;
+  box-shadow:var(--shadow-sm);
+}
+
+/* -------------------------
+   CTA strip
+   ------------------------- */
+.cta-strip{
+  margin:2.25rem 0;
+  padding:2rem;
+  background:var(--primary);
+  color:#fff;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  box-shadow:var(--shadow-md);
+}
+.cta-strip h3{margin:0; font-size:1.25rem}
+.cta-strip .cta-actions{display:flex; gap:.6rem}
+
+/* -------------------------
+   Forms
+   ------------------------- */
+.form-group{display:flex; flex-direction:column; gap:.5rem; margin-bottom:1rem}
+input[type="text"],
+input[type="email"],
+textarea,
+select{
+  padding:.6rem .75rem;
+  border:1px solid rgba(15,23,36,0.08);
+  background:#fff;
+  border-radius:8px;
+  font-size:1rem;
+  color:var(--text);
+  outline:none;
+}
+input:focus, textarea:focus, select:focus{
+  border-color:rgba(11,114,255,0.35);
+  box-shadow:0 6px 18px rgba(11,114,255,0.06);
+  outline:none;
+}
+label{font-weight:600; color:var(--muted); font-size:.95rem}
+
+/* -------------------------
+   Blog / Post styles
+   ------------------------- */
+.entry-header{padding:2rem 0;}
+.entry-title{font-size:clamp(1.6rem, 3vw, 2.25rem); margin-bottom:.5rem}
+.entry-meta{color:var(--muted); font-size:.95rem; margin-bottom:1rem}
+.entry-content img{max-width:100%; height:auto; display:block; margin:1rem 0}
+
+/* simple article content readability */
+.entry-content{
+  font-size:1.02rem;
+  line-height:1.75;
+  color:var(--text);
+}
+.entry-content h2{font-size:1.25rem; margin-top:1.5rem}
+
+/* -------------------------
+   Footer
+   ------------------------- */
+.site-footer{
+  padding:2rem 0;
+  background:#021225;
+  color:rgba(255,255,255,0.9);
+}
+.site-footer a{color:rgba(255,255,255,0.9); text-decoration:underline}
+
+/* -------------------------
+   Utilities
+   ------------------------- */
+.u-center{text-align:center}
+.small{font-size:.9rem; color:var(--muted)}
+.kicker{font-weight:700; color:var(--accent); text-transform:uppercase; font-size:.75rem; letter-spacing:.06em}
+.px-1{padding-left:.5rem;padding-right:.5rem}
+.px-2{padding-left:1rem;padding-right:1rem}
+
+/* Visually hidden (accessibility) */
+.visually-hidden{
+  position:absolute !important;
+  height:1px; width:1px;
+  overflow:hidden; clip:rect(1px,1px,1px,1px);
+  white-space:nowrap; border:0; padding:0; margin:-1px;
+}
+
+/* Focus ring for keyboard navigation */
+:focus{outline:3px solid rgba(11,114,255,0.18); outline-offset:2px}
+
+/* -------------------------
+   Responsive breakpoints
+   ------------------------- */
+@media (max-width: 1024px){
+  .hero-inner{grid-template-columns:1fr; gap:1.5rem}
+  .services-grid, .cards-grid{grid-template-columns:repeat(2, 1fr)}
+  .container{padding:0 1rem}
+}
+@media (max-width: 640px){
+  .site-nav{display:none} /* hide full nav; theme can show mobile menu */
+  .services-grid, .cards-grid{grid-template-columns:1fr}
+  .site-hero{padding:3rem 0}
+  .hero-title{font-size:1.6rem}
+  .site-header .container{padding:.5rem 1rem}
+  .btn{padding:.5rem .75rem}
+}
+
+/* -------------------------
+   Small helpers for WP blocks
+   ------------------------- */
+/* Make core buttons consistent */
+.wp-block-button .wp-block-button__link{
+  background:var(--primary) !important;
+  color:#fff !important;
+  padding:.6rem 1rem !important;
+  border-radius:8px !important;
+  box-shadow:var(--shadow-sm) !important;
+  font-weight:700;
+}
+
+/* Align Gutenberg wide/full alignments */
+.alignwide, .alignfull{width:100%; max-width:100%; margin-left:auto; margin-right:auto}
+
+/* Tables */
+.wp-block-table table{width:100%; border-collapse:collapse}
+.wp-block-table th, .wp-block-table td{padding:.6rem .75rem; border:1px solid rgba(15,23,36,0.06)}
+
+/* -------------------------
+   End of styles
+   ------------------------- */
